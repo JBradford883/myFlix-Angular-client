@@ -38,6 +38,9 @@ export class UserRegistrationService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 
 // User Login
 export class UserLoginService {

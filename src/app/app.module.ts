@@ -20,12 +20,14 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 // Angular Visual Modules
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MovieCardComponent } from './movie-card/movie-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationFormComponent,
     UserLoginFormComponent,
+    MovieCardComponent,
   ],
   imports: [
     BrowserModule,

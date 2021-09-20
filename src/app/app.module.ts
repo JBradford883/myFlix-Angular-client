@@ -21,6 +21,7 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MovieCardComponent } from './movie-card/movie-card.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
     UserRegistrationFormComponent,
     UserLoginFormComponent,
     MovieCardComponent,
+    WelcomePageComponent,
   ],
   imports: [
     BrowserModule,

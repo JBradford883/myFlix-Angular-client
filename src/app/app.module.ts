@@ -25,6 +25,11 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GenreViewComponent } from './genre-view/genre-view.component';
+import { DirectorViewComponent } from './director-view/director-view.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FavoritesViewComponent } from './favorites-view/favorites-view.component';
+import { SynopsisViewComponent } from './synopsis-view/synopsis-view.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -40,6 +45,11 @@ const appRoutes: Routes = [
     MovieCardComponent,
     WelcomePageComponent,
     GenreViewComponent,
+    DirectorViewComponent,
+    ProfileViewComponent,
+    NavbarComponent,
+    FavoritesViewComponent,
+    SynopsisViewComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

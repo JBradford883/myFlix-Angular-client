@@ -1,1 +1,15 @@
-<p>profile-view works!</p>
+<div class="profile-container">
+  <h1>Your Profile Information</h1>
+  <h2>Username: {{ user.Username }}</h2>
+  <p>Birthday: {{ user.Birthday }}</p>
+  <p>Email: {{ user.Email }}</p>
+  <div>
+    <button class='profile-btn' mat-raised-button (click)="openEditUserProfile()">
+      Edit Profile
+    </button>
+    <button class='profile-btn' mat-raised-button (click)="deleteProfile()">
+      Delete Profile
+    </button>
+  </div>
+
+</div>

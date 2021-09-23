@@ -6,7 +6,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { DirectorViewComponent } from '../director-view/director-view.component';
 import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component';
 
-//const user = localStorage.getItem('username');
+const user = localStorage.getItem('username');
 
 @Component({
   selector: 'app-movie-card',

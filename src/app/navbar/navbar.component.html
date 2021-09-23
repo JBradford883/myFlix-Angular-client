@@ -7,8 +7,8 @@
   <button class="nav-btn" mat-button routerLink="/favorites">
     Favorites
   </button>
-  <button class="nav-btn" mat-button routerLink="/profile">
-    Profile
+  <button mat-button (click)='openUserProfile()'>
+    User Profile
   </button>
   <button class="nav-btn" mat-button (click)="logOut()">
     Log out

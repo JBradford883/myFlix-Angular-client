@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+// Core modules
+import { Component, OnInit, Input } from '@angular/core';
+
+// components
+import { FetchApiDataService } from '../fetch-api-data.service';
+
+// Material modules
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-profile-view',
@@ -7,9 +15,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditProfileViewComponent implements OnInit {
 
-  constructor() { }
+  /**
+   * Required fields to update the user profile
+  */
+  @Input() userDetails = {
+    Username: '',
+    Password: '',
+    Email: '',
+    Birthday: '',
+  };
 
-  ngOnInit(): void {
+  constructor(
+    public fetchApiData: FetchApiDataService,
+    public dialogRef: MatDialogRef<EditProfileViewComponent>,
+    public snackBar: MatSnackBar,
+  ) { }
+
+  ngOnInit(): void { }
+
+  /**
+   * Update user details
+  */
+  editUserProfile(): void {
+    this.fetchApiData.editUserProfile(this.userDetails).subscribe((res) => {
+      // Logic for successful user registration needs to be implemented here!
+      this.dialogRef.close();
+      localStorage.setItem('Username', res.Username)
+      console.log(res)
+      this.snackBar.open(this.userDetails.Username, 'Successfully updated user details!', {
+        duration: 3000
+      });
+    }, (res) => {
+      this.snackBar.open(res, 'OK', {
+        duration: 3000
+      });
+      setTimeout(function () {
+        window.location.reload();
+      }, 3500);
+    })
   }
-
 }

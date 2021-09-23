@@ -1,1 +1,16 @@
-<p>navbar works!</p>
+<mat-toolbar>
+  <span>myFlix Angular Movie App</span>
+  <span class="top-nav"></span>
+  <button class="nav-btn" mat-button routerLink="/movies">
+    Browse Movies
+  </button>
+  <button class="nav-btn" mat-button routerLink="/favorites">
+    Favorites
+  </button>
+  <button class="nav-btn" mat-button routerLink="/profile">
+    Profile
+  </button>
+  <button class="nav-btn" mat-button (click)="logOut()">
+    Log out
+  </button>
+</mat-toolbar>

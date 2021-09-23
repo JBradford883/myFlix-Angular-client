@@ -17,7 +17,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class UserLoginFormComponent implements OnInit {
 
-  @Input() userData = { Username: '', Password: '' };
+  @Input() userDetails = { Username: '', Password: '' };
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -30,7 +30,7 @@ export class UserLoginFormComponent implements OnInit {
 
   // This is the function responsible for sending the form inputs to the backend
   loginUser(): void {
-    this.fetchApiData.userLogin(this.userData).subscribe((response) => {
+    this.fetchApiData.userLogin(this.userDetails).subscribe((response) => {
       localStorage.setItem('username', response.user.username);
       localStorage.setItem('token', response.token);
 

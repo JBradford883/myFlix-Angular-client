@@ -15,12 +15,17 @@ const user = localStorage.getItem('username');
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
+  user: any = {};
+  //movies: any[] = [];
+  favs: any[] = [];
+
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,) { }
 
   ngOnInit(): void {
     this.getMovies();
+    //this.getUsersFavs();
   }
 
   getMovies(): void {
@@ -66,6 +71,14 @@ export class MovieCardComponent implements OnInit {
       },
       width: '500px'
     });
+  }
+
+  setFavStatus(id: any): any {
+    if (this.favs.includes(id)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

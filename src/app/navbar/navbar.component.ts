@@ -6,7 +6,7 @@ import { ProfileViewComponent } from '../profile-view/profile-view.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 
-const username = localStorage.getItem('username')
+const user = localStorage.getItem('username')
 
 @Component({
   selector: 'app-navbar',
@@ -22,23 +22,6 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  }
-
-  // opens modal with user details
-  openUserProfile(): void {
-    this.dialog.open(ProfileViewComponent, {
-      width: '500px'
-    });
-  }
-
-  // navigates to "all movies"
-  openAllMovies(): void {
-    this.router.navigate(['movies']);
-  }
-
-  // navigates to "favoritemovies"
-  openFavorites(): void {
-    this.router.navigate(['favorites'])
   }
 
   /**

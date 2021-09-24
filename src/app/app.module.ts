@@ -36,7 +36,9 @@ import { EditProfileViewComponent } from './edit-profile-view/edit-profile-view.
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
-  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' }
+  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
+  { path: 'profile', component: ProfileViewComponent },
+  { path: 'favorites', component: FavoritesViewComponent }
 ];
 
 @NgModule({

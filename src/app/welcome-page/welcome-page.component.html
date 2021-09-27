@@ -1,15 +1,16 @@
-<mat-card style="text-align: center;">
-  <div class="main-page">
-    <h1>
-      Welcome to myFlix!
-    </h1>
-    <mat-card-actions>
-      <button mat-raised-button (click)="openUserRegistrationDialog()" style="margin-right: 10px;" color="primary">
+<!DOCTYPE html>
+
+<body>
+  <div class='main-page' style="background-image: url('./assets/background.jpg')">
+    <div class='main-page-content'>
+      <h1>Welcome to MyFlix</h1>
+      <h1>Movie App</h1>
+      <button class="welcome-button" mat-raised-button (click)='openUserRegistrationDialog()' color='primary'>
         Sign Up
       </button>
-      <button mat-raised-button (click)="openUserLoginDialog()" style="margin-right: 10px;" color="primary">
+      <button class="welcome-button" mat-raised-button (click)='openUserLoginDialog()' color='primary'>
         Login
       </button>
-    </mat-card-actions>
+    </div>
   </div>
-</mat-card>
+</body>

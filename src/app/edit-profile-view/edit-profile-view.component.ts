@@ -40,7 +40,7 @@ export class EditProfileViewComponent implements OnInit {
     this.fetchApiData.editUserProfile(this.userDetails).subscribe((res) => {
       // Logic for successful user registration needs to be implemented here!
       this.dialogRef.close();
-      localStorage.setItem('Username', res.Username)
+      localStorage.setItem('username', res.Username)
       console.log(res)
       this.snackBar.open(this.userDetails.Username, 'Successfully updated user details!', {
         duration: 3000
@@ -49,9 +49,9 @@ export class EditProfileViewComponent implements OnInit {
       this.snackBar.open(res, 'OK', {
         duration: 3000
       });
-      setTimeout(function () {
-        window.location.reload();
-      }, 3500);
+      // setTimeout(function () {
+      //   window.location.reload();
+      // }, 3500);
     })
   }
 }

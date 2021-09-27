@@ -19,7 +19,7 @@ export class FetchApiDataService {
 
   // Api call for new user registration endpoint
   public userRegistration(userDetails: any): Observable<any> {
-    console.log();
+    console.log(userDetails);
     return this.http.post(apiUrl + 'users', userDetails).pipe(
       catchError(this.handleError)
     );
@@ -39,7 +39,7 @@ export class FetchApiDataService {
     return this.http.get(apiUrl + 'movies', {
       headers: new HttpHeaders(
         {
-          Authorization: `Bearer ${token}`,
+          Authorization: 'Bearer ' + token,
         })
     }).pipe(
       map(this.extractResponseData),
@@ -164,7 +164,7 @@ export class FetchApiDataService {
   }
 
   // Remove a movie from the users favorites list
-  public deleteFavoriteMovies(): Observable<any> {
+  public deleteFavoriteMovies(id: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     return this.http.delete(apiUrl + `users/${username}/movies/:movieId`, {
@@ -179,7 +179,7 @@ export class FetchApiDataService {
   }
 
   // Extract data response 
-  private extractResponseData(res: Response | Object): any {
+  private extractResponseData(res: any | Object): any {
     const body = res;
     return body || {};
   }

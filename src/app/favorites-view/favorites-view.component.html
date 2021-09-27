@@ -1,2 +1,37 @@
 <app-navbar></app-navbar>
-<p>favorites-view works!</p>
+
+<!-- Favorites list shows the same fully functional list as the movies list, but only displays the users favorites -->
+
+<div class="favorites-container">
+  <h1>Your Favorites</h1>
+</div>
+<!-- <mat-divider></mat-divider> -->
+<!-- <mat-spinner *ngIf="isLoading" class="movie-spinner" color="primary" diameter="80"></mat-spinner> -->
+<div class="movie-container">
+  <mat-card *ngFor="let movies of favorites;" style="flex: 1 1 auto;">
+    <mat-card-header>
+      <mat-card-title>{{ movies.Title }}</mat-card-title>
+      <div>
+        <!-- <mat-icon *ngIf="!setFaveStatus(movies._id)" (click)="addToFavoriteMoviesList(movies._id, movies.Title)" class="favorite-button">favorite_border</mat-icon>
+        <mat-icon *ngIf="setFaveStatus(movies._id)" (click)="removeFromFavorites(movies._id, movies.Title)" class="favorite-button-active">favorite</mat-icon> -->
+      </div>
+      <mat-card-subtitle>Directed by: {{movies.Director.Name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img class="movie-poster" src={{movies.imageUrl}} alt={{movies.Title}} />
+    <mat-card-actions>
+      <button class='button-link' mat-button color='primary'
+        (click)='openGenre(movies.Genre.Name, movies.Genre.Description)'>
+        Genre
+      </button>
+      <button class='button-link' mat-button color='primary'
+        (click)='openDirector(movies.Director.Name, movies.Director.Bio, movies.Director.Birth, movies.Director.Death)'>
+        Director
+      </button>
+      <button class='button-link' mat-button color='primary'
+        (click)='openSynopsis(movies.Title, movies.ImagePath, movies.Description)'>
+        Synopsis
+      </button>
+      <mat-icon>favorite_border</mat-icon>
+    </mat-card-actions>
+  </mat-card>
+</div>

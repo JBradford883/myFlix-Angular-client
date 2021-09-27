@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { GenreViewComponent } from '../genre-view/genre-view.component';
 import { FetchApiDataService } from '../fetch-api-data.service';
@@ -16,16 +17,17 @@ const user = localStorage.getItem('username');
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   user: any = {};
-  //movies: any[] = [];
   favs: any[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
-    public dialog: MatDialog,) { }
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar,
+  ) { }
 
   ngOnInit(): void {
     this.getMovies();
-    //this.getUsersFavs();
+    this.getUsersFavs();
   }
 
   getMovies(): void {
@@ -73,6 +75,44 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Adds move to users favorites list
+  */
+  postFavoriteMovies(id: string, Title: string): void {
+    this.fetchApiData.postFavoriteMovies(id).subscribe((res: any) => {
+      this.snackBar.open(`${Title} has been added to favorties`, 'OK', {
+        duration: 3000,
+      })
+      return this.getUsersFavs();
+    })
+  }
+
+  /**
+   * Removed movie from users favorites list
+  */
+  deleteFavoriteMovies(id: string, Title: string): void {
+    this.fetchApiData.deleteFavoriteMovies(id).subscribe((res: any) => {
+      this.snackBar.open(`${Title} has been removed from favorties`, 'OK', {
+        duration: 3000,
+      })
+      return this.getUsersFavs();
+    })
+  }
+
+  /**
+   * Returns a list of the users favorites movie._id's
+  */
+  getUsersFavs(): void {
+    const user = localStorage.getItem('username');
+    this.fetchApiData.userLogin(user).subscribe((resp: any) => {
+      this.favs = resp.Favorites;
+      //console.log(this.faves);
+      return this.favs;
+    });
+  }
+  /**
+   * Compares movie id's with getUsersFavs returned list to set the Favorites icon to add/remove correctly
+  */
   setFavStatus(id: any): any {
     if (this.favs.includes(id)) {
       return true;

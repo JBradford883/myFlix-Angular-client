@@ -31,7 +31,10 @@
         (click)='openSynopsis(movies.Title, movies.ImagePath, movies.Description)'>
         Synopsis
       </button>
-      <mat-icon>favorite_border</mat-icon>
+      <mat-icon *ngIf="!setFavStatus(movies._id)" (click)="postFavoriteMovies(movies._id, movies.Title)"
+        class="favorite-button">favorite_border</mat-icon>
+      <mat-icon *ngIf="setFavStatus(movies._id)" (click)="deleteFavoriteMovies(movies._id, movies.Title)"
+        class="favorite-button-active">favorite</mat-icon>
     </mat-card-actions>
   </mat-card>
 </div>

@@ -28,9 +28,10 @@ export class FetchApiDataService {
   // Api call for the login endpoint
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
-    return this.http.post(apiUrl + 'login', userDetails).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.post(apiUrl + 'login', userDetails)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   // Get all movies
@@ -90,15 +91,14 @@ export class FetchApiDataService {
   }
 
   // Get user by username
-  getUserProfile(username: any): Observable<any> {
+  getUserProfile(user: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + `users/${username}`, {
+    return this.http.get(apiUrl + 'users/' + user, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-      map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
@@ -164,7 +164,7 @@ export class FetchApiDataService {
   }
 
   // Remove a movie from the users favorites list
-  public deleteFavoriteMovies(id: string): Observable<any> {
+  deleteFavoriteMovies(id: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     return this.http.delete(apiUrl + `users/${username}/movies/:movieId`, {
@@ -179,8 +179,8 @@ export class FetchApiDataService {
   }
 
   // Extract data response 
-  private extractResponseData(res: any | Object): any {
-    const body = res;
+  private extractResponseData(response: any | Object): any {
+    const body = response;
     return body || {};
   }
 

@@ -64,7 +64,7 @@ export class FavoritesViewComponent implements OnInit {
     this.movies.forEach((movie: any) => {
       if (this.favs.includes(movie._id)) {
         this.favorites.push(movie);
-      } console.log(this.favorites);
+      } console.log(this.favorites, 'favorites');
     });
     return this.favorites;
   }
@@ -115,7 +115,7 @@ export class FavoritesViewComponent implements OnInit {
     })
   }
 
-  removeFromFavorites(id: string, Title: string): void {
+  deleteFavoriteMovies(id: string, Title: string): void {
     this.fetchApiData.deleteFavoriteMovies(id).subscribe((res: any) => {
       this.snackBar.open(`${Title} has been removed from favorties`, 'OK', {
         duration: 3000,

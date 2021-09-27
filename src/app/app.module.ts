@@ -21,17 +21,17 @@ import { UserRegistrationFormComponent } from './user-registration-form/user-reg
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
-
-// Angular Visual Modules
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GenreViewComponent } from './genre-view/genre-view.component';
 import { DirectorViewComponent } from './director-view/director-view.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { GenreViewComponent } from './genre-view/genre-view.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FavoritesViewComponent } from './favorites-view/favorites-view.component';
 import { SynopsisViewComponent } from './synopsis-view/synopsis-view.component';
 import { EditProfileViewComponent } from './edit-profile-view/edit-profile-view.component';
+
+// Angular Visual Modules
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },

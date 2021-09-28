@@ -31,22 +31,6 @@ export class FavoritesViewComponent implements OnInit {
     this.getUsersFavs();
   }
 
-  getUsersFavs(): void {
-    const user = localStorage.getItem('username');
-    this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
-      this.favs = resp.Favorites;
-      console.log(this.favs);
-      return this.favs;
-    });
-  }
-
-  getUserProfile(): void {
-    let user = localStorage.getItem('username');
-    this.fetchApiData.getUserProfile(user).subscribe((res: any) => {
-      this.user = res;
-    });
-  }
-
   getMovies(): void {
     this.isLoading = true;
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
@@ -57,16 +41,53 @@ export class FavoritesViewComponent implements OnInit {
     });
   }
 
+  getUsersFavs(): void {
+    const user = localStorage.getItem('username');
+    this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
+      this.favs = resp.Favorites;
+      console.log(this.favs);
+      return this.favs;
+    });
+  }
+
+  // getUserProfile(): void {
+  //   let user = localStorage.getItem('username');
+  //   this.fetchApiData.getUserProfile(user).subscribe((res: any) => {
+  //     this.user = res;
+  //   });
+  // }
+
   /**
    * Filters movies to display only the users favorites
   */
   filterFavorites(): void {
-    this.movies.forEach((movie: any) => {
-      if (this.favs.includes(movie._id)) {
-        this.favorites.push(movie);
+    this.movies.forEach((movies: any) => {
+      if (this.favs.includes(movies._id)) {
+        this.favorites.push(movies);
       } console.log(this.favorites, 'favorites');
     });
     return this.favorites;
+  }
+
+  postFavoriteMovies(id: string, Title: string): void {
+    this.fetchApiData.postFavoriteMovies(id).subscribe((res: any) => {
+      this.snackBar.open(`${Title} has been added to favorties`, 'OK', {
+        duration: 3000,
+      })
+      return this.getUsersFavs();
+    })
+  }
+
+  deleteFavoriteMovies(id: string, Title: string): void {
+    this.fetchApiData.deleteFavoriteMovies(id).subscribe((res: any) => {
+      this.snackBar.open(`${Title} has been removed from favorties`, 'OK', {
+        duration: 3000,
+      })
+      setTimeout(function () {
+        window.location.reload();
+      }, 3500);
+      return this.getUsersFavs();
+    })
   }
 
   openGenre(name: string,
@@ -104,27 +125,6 @@ export class FavoritesViewComponent implements OnInit {
       },
       width: '500px'
     });
-  }
-
-  postFavoriteMovies(id: string, Title: string): void {
-    this.fetchApiData.postFavoriteMovies(id).subscribe((res: any) => {
-      this.snackBar.open(`${Title} has been added to favorties`, 'OK', {
-        duration: 3000,
-      })
-      return this.getUsersFavs();
-    })
-  }
-
-  deleteFavoriteMovies(id: string, Title: string): void {
-    this.fetchApiData.deleteFavoriteMovies(id).subscribe((res: any) => {
-      this.snackBar.open(`${Title} has been removed from favorties`, 'OK', {
-        duration: 3000,
-      })
-      setTimeout(function () {
-        window.location.reload();
-      }, 3500);
-      return this.getUsersFavs();
-    })
   }
 
   /**

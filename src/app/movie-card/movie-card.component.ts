@@ -16,7 +16,7 @@ const user = localStorage.getItem('Username');
 })
 export class MovieCardComponent implements OnInit {
   user: any = {};
-  FavoriteMovies: any = [];
+  favorites: any = [];
   movies: any[] = [];
   favs: any[] = [];
 
@@ -101,7 +101,7 @@ export class MovieCardComponent implements OnInit {
   */
   getUsersFavs(): void {
     this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
-      this.favs = resp.FavoriteMovies;
+      this.favs = resp.Favorites;
       //console.log(this.faves);
       return this.favs;
     });

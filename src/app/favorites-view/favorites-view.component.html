@@ -8,9 +8,13 @@
 <!-- <mat-divider></mat-divider> -->
 <!-- <mat-spinner *ngIf="isLoading" class="movie-spinner" color="primary" diameter="80"></mat-spinner> -->
 <div class="movie-container">
-  <mat-card *ngFor="let movies of FavoriteMovies;" style="flex: 1 1 auto;">
+  <mat-card *ngFor="let movies of favorites;" style="flex: 1 1 auto;">
     <mat-card-header>
       <mat-card-title>{{ movies.Title }}</mat-card-title>
+      <div>
+        <!-- <mat-icon *ngIf="!setFaveStatus(movies._id)" (click)="addToFavoriteMoviesList(movies._id, movies.Title)" class="favorite-button">favorite_border</mat-icon>
+        <mat-icon *ngIf="setFaveStatus(movies._id)" (click)="removeFromFavorites(movies._id, movies.Title)" class="favorite-button-active">favorite</mat-icon> -->
+      </div>
       <mat-card-subtitle>Directed by: {{movies.Director.Name}}</mat-card-subtitle>
     </mat-card-header>
     <img class="movie-poster" src={{movies.imageUrl}} alt={{movies.Title}} />

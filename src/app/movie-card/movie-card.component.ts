@@ -7,7 +7,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { DirectorViewComponent } from '../director-view/director-view.component';
 import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component';
 
-const user = localStorage.getItem('username');
+const user = localStorage.getItem('Username');
 
 @Component({
   selector: 'app-movie-card',
@@ -15,8 +15,9 @@ const user = localStorage.getItem('username');
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent implements OnInit {
-  movies: any[] = [];
   user: any = {};
+  FavoriteMovies: any = [];
+  movies: any[] = [];
   favs: any[] = [];
 
   constructor(
@@ -38,9 +39,7 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  openGenre(name: string,
-    description: string,
-  ): void {
+  openGenre(name: string, description: string,): void {
     this.dialog.open(GenreViewComponent, {
       data: {
         Name: name,
@@ -50,8 +49,7 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  openDirector(name: string, bio: string, birth: string, death: string
-  ): void {
+  openDirector(name: string, bio: string, birth: string, death: string): void {
     this.dialog.open(DirectorViewComponent, {
       data: {
         Name: name,
@@ -63,8 +61,7 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  openSynopsis(title: string, imagePath: any, description: string
-  ): void {
+  openSynopsis(title: string, imagePath: any, description: string): void {
     this.dialog.open(SynopsisViewComponent, {
       data: {
         Title: title,
@@ -103,9 +100,8 @@ export class MovieCardComponent implements OnInit {
    * Returns a list of the users favorites movie._id's
   */
   getUsersFavs(): void {
-    const user = localStorage.getItem('username');
-    this.fetchApiData.userLogin(user).subscribe((resp: any) => {
-      this.favs = resp.Favorites;
+    this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
+      this.favs = resp.FavoriteMovies;
       //console.log(this.faves);
       return this.favs;
     });

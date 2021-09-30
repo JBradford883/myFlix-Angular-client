@@ -8,15 +8,16 @@ import { GenreViewComponent } from '../genre-view/genre-view.component';
 import { DirectorViewComponent } from '../director-view/director-view.component';
 import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component';
 
+const user = localStorage.getItem('Username');
+
 @Component({
   selector: 'app-favorites-view',
   templateUrl: './favorites-view.component.html',
   styleUrls: ['./favorites-view.component.scss']
 })
 export class FavoritesViewComponent implements OnInit {
-  isLoading = false;
   user: any = {};
-  favorites: any = [];
+  FavoriteMovies: any = [];
   movies: any[] = [];
   favs: any[] = [];
 
@@ -32,9 +33,7 @@ export class FavoritesViewComponent implements OnInit {
   }
 
   getMovies(): void {
-    this.isLoading = true;
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      this.isLoading = false;
       this.movies = resp;
       console.log(this.movies);
       return this.filterFavorites();
@@ -42,20 +41,12 @@ export class FavoritesViewComponent implements OnInit {
   }
 
   getUsersFavs(): void {
-    const user = localStorage.getItem('username');
     this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
-      this.favs = resp.Favorites;
+      this.favs = resp.FavoriteMovies;
       console.log(this.favs);
       return this.favs;
     });
   }
-
-  // getUserProfile(): void {
-  //   let user = localStorage.getItem('username');
-  //   this.fetchApiData.getUserProfile(user).subscribe((res: any) => {
-  //     this.user = res;
-  //   });
-  // }
 
   /**
    * Filters movies to display only the users favorites
@@ -63,10 +54,10 @@ export class FavoritesViewComponent implements OnInit {
   filterFavorites(): void {
     this.movies.forEach((movies: any) => {
       if (this.favs.includes(movies._id)) {
-        this.favorites.push(movies);
-      } console.log(this.favorites, 'favorites');
+        this.FavoriteMovies.push(movies);
+      } console.log(this.FavoriteMovies, 'favorites');
     });
-    return this.favorites;
+    return this.FavoriteMovies;
   }
 
   postFavoriteMovies(id: string, Title: string): void {

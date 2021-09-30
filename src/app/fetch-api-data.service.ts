@@ -179,9 +179,8 @@ export class FetchApiDataService {
   }
 
   // Extract data response 
-  private extractResponseData(response: any | Object): any {
-    const body = response;
-    return body || {};
+  private extractResponseData(data: any | Object): any {
+    return data || {};
   }
 
   // Handle error function

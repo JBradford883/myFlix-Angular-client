@@ -49,9 +49,9 @@ export class EditProfileViewComponent implements OnInit {
       this.snackBar.open(res, 'OK', {
         duration: 3000
       });
-      // setTimeout(function () {
-      //   window.location.reload();
-      // }, 3500);
+      setTimeout(function () {
+        window.location.reload();
+      }, 3500);
     })
   }
 }

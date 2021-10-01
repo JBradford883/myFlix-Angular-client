@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+
 import { FetchApiDataService } from '../fetch-api-data.service';
-
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-
 import { GenreViewComponent } from '../genre-view/genre-view.component';
 import { DirectorViewComponent } from '../director-view/director-view.component';
 import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component';
 
-const user = localStorage.getItem('Username');
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+const user = localStorage.getItem('username');
 
 @Component({
   selector: 'app-favorites-view',
@@ -18,7 +18,7 @@ const user = localStorage.getItem('Username');
 export class FavoritesViewComponent implements OnInit {
   user: any = {};
   favorites: any = [];
-  movies: any[] = [];
+  movie: any[] = [];
   favs: any[] = [];
 
   constructor(
@@ -32,53 +32,42 @@ export class FavoritesViewComponent implements OnInit {
     this.getUsersFavs();
   }
 
+  // Gets all Movies
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      this.movies = resp;
-      console.log(this.movies);
+      this.movie = resp;
+      console.log(this.movie);
       return this.filterFavorites();
     });
   }
 
+  // Gets the users Favorite Movies
   getUsersFavs(): void {
     this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
-      this.favs = resp.favorites;
+      this.favs = resp.FavoriteMovies;
       console.log(this.favs);
       return this.favs;
     });
   }
 
+  // getUser(): void {
+  //   let user = localStorage.getItem('username');
+  //   this.fetchApiData.getUserProfile(user).subscribe((res: any) => {
+  //     this.user = res;
+  //     this.getMovies();
+  //   });
+  // }
+
   /**
    * Filters movies to display only the users favorites
   */
   filterFavorites(): void {
-    this.movies.forEach((movies: any) => {
+    this.movie.forEach((movies: any) => {
       if (this.favs.includes(movies._id)) {
         this.favorites.push(movies);
       } console.log(this.favorites, 'favorites');
     });
     return this.favorites;
-  }
-
-  postFavoriteMovies(id: string, Title: string): void {
-    this.fetchApiData.postFavoriteMovies(id).subscribe((res: any) => {
-      this.snackBar.open(`${Title} has been added to favorties`, 'OK', {
-        duration: 3000,
-      })
-      return this.getUsersFavs();
-    })
-  }
-
-  deleteFavoriteMovies(id: string, Title: string): void {
-    this.fetchApiData.deleteFavoriteMovies(id).subscribe((res: any) => {
-      this.snackBar.open(`${Title} has been removed from favorties`, 'OK', {
-        duration: 3000,
-      })
-      setTimeout(function () {
-        window.location.reload();
-      }, 3500);
-      return this.getUsersFavs();
-    })
   }
 
   openGenre(name: string,
@@ -116,6 +105,27 @@ export class FavoritesViewComponent implements OnInit {
       },
       width: '500px'
     });
+  }
+
+  postFavoriteMovies(id: string, Title: string): void {
+    this.fetchApiData.postFavoriteMovies(id).subscribe((res: any) => {
+      this.snackBar.open(`${Title} has been added to favorties`, 'OK', {
+        duration: 3000,
+      })
+      return this.getUsersFavs();
+    })
+  }
+
+  deleteFavoriteMovies(id: string, Title: string): void {
+    this.fetchApiData.deleteFavoriteMovies(id).subscribe((res: any) => {
+      this.snackBar.open(`${Title} has been removed from favorties`, 'OK', {
+        duration: 3000,
+      })
+      setTimeout(function () {
+        window.location.reload();
+      }, 3500);
+      return this.getUsersFavs();
+    })
   }
 
   /**

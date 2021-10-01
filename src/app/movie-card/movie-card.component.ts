@@ -7,7 +7,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { DirectorViewComponent } from '../director-view/director-view.component';
 import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component';
 
-const user = localStorage.getItem('Username');
+const user = localStorage.getItem('username');
 
 @Component({
   selector: 'app-movie-card',
@@ -34,7 +34,7 @@ export class MovieCardComponent implements OnInit {
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      console.log(this.movies);
+      //console.log(this.movies);
       return this.movies;
     });
   }
@@ -85,7 +85,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-   * Removed movie from users favorites list
+   * Removes movie from users favorites list
   */
   deleteFavoriteMovies(id: string, Title: string): void {
     this.fetchApiData.deleteFavoriteMovies(id).subscribe((res: any) => {
@@ -101,8 +101,8 @@ export class MovieCardComponent implements OnInit {
   */
   getUsersFavs(): void {
     this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
-      this.favs = resp.Favorites;
-      //console.log(this.faves);
+      this.favs = resp.FavoriteMovies;
+      //console.log(this.favs);
       return this.favs;
     });
   }

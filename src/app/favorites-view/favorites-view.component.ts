@@ -18,7 +18,7 @@ const user = localStorage.getItem('username');
 export class FavoritesViewComponent implements OnInit {
   user: any = {};
   favorites: any = [];
-  movie: any[] = [];
+  movies: any[] = [];
   favs: any[] = [];
 
   constructor(
@@ -35,8 +35,8 @@ export class FavoritesViewComponent implements OnInit {
   // Gets all Movies
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      this.movie = resp;
-      console.log(this.movie);
+      this.movies = resp;
+      console.log(this.movies);
       return this.filterFavorites();
     });
   }
@@ -62,7 +62,7 @@ export class FavoritesViewComponent implements OnInit {
    * Filters movies to display only the users favorites
   */
   filterFavorites(): void {
-    this.movie.forEach((movies: any) => {
+    this.movies.forEach((movies: any) => {
       if (this.favs.includes(movies._id)) {
         this.favorites.push(movies);
       } console.log(this.favorites, 'favorites');

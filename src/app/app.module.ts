@@ -13,6 +13,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 // Components
 import { AppRoutingModule } from './app-routing.module';
@@ -70,7 +73,10 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatSnackBarModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

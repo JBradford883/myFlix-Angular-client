@@ -1,18 +1,18 @@
-<div class="genre-container">
-  <div class="genre-header">
+<div class="director-container">
+  <div class="director-header">
     <h2 class="title">{{ data.Name }}</h2>
   </div>
   <div>
-    <mat-dialog-content class="genre-content">
+    <mat-dialog-content class="director-content">
       {{ data.Bio }}
     </mat-dialog-content>
   </div>
   <div>
-    <mat-dialog-content class="genre-content">
-      Birth Year: {{ data.Birth }}
+    <mat-dialog-content class="director-content__birth">
+      <b>Birth Year:</b> {{ data.Birth }}
     </mat-dialog-content>
-    <mat-dialog-content class="genre-content">
-      Death Year: {{ data.Death }}
+    <mat-dialog-content class="director-content">
+      <b>Death Year:</b> {{ data.Death }}
     </mat-dialog-content>
   </div>
   <div class="close-btn"><button mat-stroked-button aria-label="Close the director details button" mat-dialog-close

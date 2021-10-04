@@ -20,7 +20,7 @@ export class FetchApiDataService {
   }
 
   /**
-   * User regiastration to the API
+   * User registration to the API
    * @param userDetails 
    * @returns status message: success/error
    */

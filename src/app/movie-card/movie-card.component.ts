@@ -6,6 +6,7 @@ import { GenreViewComponent } from '../genre-view/genre-view.component';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { DirectorViewComponent } from '../director-view/director-view.component';
 import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component';
+import { Router } from '@angular/router';
 
 const user = localStorage.getItem('username');
 
@@ -24,6 +25,7 @@ export class MovieCardComponent implements OnInit {
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
+    public router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -115,6 +117,17 @@ export class MovieCardComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  /**
+   * logs out the user by clearing the localstorage (username, token) and reloads the page
+   * then -> redirect to welcome page
+   */
+  logOut(): void {
+    this.router.navigate(['welcome']);
+    this.snackBar.open('Logout successful!', 'OK', {
+      duration: 3000
+    });
   }
 
 }

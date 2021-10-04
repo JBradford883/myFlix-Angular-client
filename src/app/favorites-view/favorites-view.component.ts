@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { GenreViewComponent } from '../genre-view/genre-view.component';
@@ -25,6 +26,7 @@ export class FavoritesViewComponent implements OnInit {
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
+    public router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -137,6 +139,17 @@ export class FavoritesViewComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  /**
+ * logs out the user by clearing the localstorage (username, token) and reloads the page
+ * then -> redirect to welcome page
+ */
+  logOut(): void {
+    this.router.navigate(['welcome']);
+    this.snackBar.open('Logout successful!', 'OK', {
+      duration: 3000
+    });
   }
 
 }

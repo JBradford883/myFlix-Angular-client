@@ -149,7 +149,7 @@ export class FetchApiDataService {
   }
 
   // Delete a users profile
-  deleteUserProfile(): Observable<any> {
+  public deleteUserProfile(): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     return this.http.delete(apiUrl + `users/${username}`, {
@@ -158,7 +158,6 @@ export class FetchApiDataService {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-      map(this.extractResponseData),
       catchError(this.handleError)
     );
   }

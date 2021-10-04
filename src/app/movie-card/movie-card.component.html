@@ -1,4 +1,89 @@
-<app-navbar></app-navbar>
+<div>
+  <mat-toolbar color="primary">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <a mat-button>
+      <span>myFlix Angular Movie App</span>
+    </a>
+    <span class="example-spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+      <button class="nav-btn" mat-button routerLink="/movies">
+        Browse Movies
+      </button>
+      <button class="nav-btn" mat-button routerLink="/favorites">
+        Favorites
+      </button>
+      <button class="nav-btn" mat-button routerLink="/profile">
+        User Profile
+      </button>
+      <button class="nav-btn" mat-button (click)="logOut()">
+        Log out
+      </button>
+    </div>
+
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill class="example-container">
+
+    <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
+      <div fxLayout="column">
+        <button class="nav-btn" mat-button routerLink="/movies">
+          Browse Movies
+        </button>
+        <button class="nav-btn" mat-button routerLink="/favorites">
+          Favorites
+        </button>
+        <button class="nav-btn" mat-button routerLink="/profile">
+          User Profile
+        </button>
+        <button class="nav-btn" mat-button (click)="logOut()">
+          Log out
+        </button>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+
+      <!-- HTML code for movie-card component -->
+      <div class="movie-container">
+        <mat-card *ngFor="let movie of movies" style="flex: 1 1 auto;">
+          <img class="movie-image" src={{movie.ImagePath}} alt={{movie.Title}} />
+          <mat-card-header>
+            <mat-card-title class="movie-title">{{movie.Title}}</mat-card-title>
+            <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+            <button class='button-link' mat-button color='primary'
+              (click)='openGenre(movie.Genre.Name, movie.Genre.Description)'>
+              Genre
+            </button>
+            <button class='button-link' mat-button color='primary'
+              (click)='openDirector(movie.Director.Name, movie.Director.Bio, movie.Director.Birth, movie.Director.Death)'>
+              Director
+            </button>
+            <button class='button-link' mat-button color='primary'
+              (click)='openSynopsis(movie.Title, movie.ImagePath, movie.Description)'>
+              Synopsis
+            </button>
+
+            <mat-icon *ngIf="!setFavStatus(movie._id)" (click)="postFavoriteMovies(movie._id, movie.Title)"
+              class="favorite-button">favorite_border</mat-icon>
+            <mat-icon *ngIf="setFavStatus(movie._id)" (click)="deleteFavoriteMovies(movie._id, movie.Title)"
+              class="favorite-button-active">favorite</mat-icon>
+
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+
+<!-- <app-navbar></app-navbar>
 <div class="movie-container">
   <mat-card *ngFor="let movie of movies" style="flex: 1 1 auto;">
     <img class="movie-image" src={{movie.ImagePath}} alt={{movie.Title}} />
@@ -27,4 +112,4 @@
 
     </mat-card-actions>
   </mat-card>
-</div>
+</div> -->

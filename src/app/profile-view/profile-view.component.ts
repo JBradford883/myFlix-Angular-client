@@ -53,4 +53,15 @@ export class ProfileViewComponent implements OnInit {
     }
   }
 
+  /**
+   * logs out the user by clearing the localstorage (username, token) and reloads the page
+   * then -> redirect to welcome page
+   */
+  logOut(): void {
+    this.router.navigate(['welcome']);
+    this.snackBar.open('Logout successful!', 'OK', {
+      duration: 3000
+    });
+  }
+
 }

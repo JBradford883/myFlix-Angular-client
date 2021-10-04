@@ -1,4 +1,77 @@
-<app-navbar></app-navbar>
+<div>
+  <mat-toolbar color="primary">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <a mat-button>
+      <span>myFlix Angular Movie App</span>
+    </a>
+    <span class="example-spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+      <button class="nav-btn" mat-button routerLink="/movies">
+        Browse Movies
+      </button>
+      <button class="nav-btn" mat-button routerLink="/favorites">
+        Favorites
+      </button>
+      <button class="nav-btn" mat-button routerLink="/profile">
+        User Profile
+      </button>
+      <button class="nav-btn" mat-button (click)="logOut()">
+        Log out
+      </button>
+    </div>
+
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill class="example-container">
+
+    <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
+      <div fxLayout="column">
+        <button class="nav-btn" mat-button routerLink="/movies">
+          Browse Movies
+        </button>
+        <button class="nav-btn" mat-button routerLink="/favorites">
+          Favorites
+        </button>
+        <button class="nav-btn" mat-button routerLink="/profile">
+          User Profile
+        </button>
+        <button class="nav-btn" mat-button (click)="logOut()">
+          Log out
+        </button>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+
+      <!-- HTML Code for profile view component -->
+      <mat-card class="profile-container">
+        <mat-card-header>
+          <mat-card-title>Your Profile Information</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h3><b>Username:</b> {{ user.Username }}</h3>
+          <h3><b>Birthday:</b> {{ user.Birthday }}</h3>
+          <h3><b>Email:</b> {{ user.Email }}</h3>
+        </mat-card-content>
+        <div>
+          <button class='profile-btn' mat-raised-button (click)="openEditUserProfile()">
+            Edit Profile
+          </button>
+          <button class='profile-btn' mat-raised-button (click)="deleteProfile()">
+            Delete Profile
+          </button>
+        </div>
+      </mat-card>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+
+<!-- <app-navbar></app-navbar>
 <mat-card class="profile-container">
   <mat-card-header>
     <mat-card-title>Your Profile Information</mat-card-title>
@@ -16,4 +89,4 @@
       Delete Profile
     </button>
   </div>
-</mat-card>
+</mat-card> -->

@@ -27,7 +27,6 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { DirectorViewComponent } from './director-view/director-view.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { GenreViewComponent } from './genre-view/genre-view.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { FavoritesViewComponent } from './favorites-view/favorites-view.component';
 import { SynopsisViewComponent } from './synopsis-view/synopsis-view.component';
 import { EditProfileViewComponent } from './edit-profile-view/edit-profile-view.component';
@@ -54,7 +53,6 @@ const appRoutes: Routes = [
     GenreViewComponent,
     DirectorViewComponent,
     ProfileViewComponent,
-    NavbarComponent,
     FavoritesViewComponent,
     SynopsisViewComponent,
     EditProfileViewComponent,

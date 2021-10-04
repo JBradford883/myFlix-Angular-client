@@ -1,14 +1,13 @@
-// src/app/user-registration-form/user-registration-form.component.ts
+// Core modules
 import { Component, OnInit, Input } from '@angular/core';
 
-// You'll use this import to close the dialog on success
+// Material modules
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-// This import brings in the API calls we created in 6.2
+// Custom component
 import { FetchApiDataService } from '../fetch-api-data.service';
 
-// This import is used to display notifications back to the user
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-registration-form',
@@ -17,6 +16,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserRegistrationFormComponent implements OnInit {
 
+  /**
+   * Required fields for the user to register
+   */
   @Input() userDetails = { Username: '', Password: '', Email: '', Birthday: '' };
 
   constructor(
@@ -27,10 +29,12 @@ export class UserRegistrationFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   * Register a new user and save the users information to the database.
+   * @returns status success/error
+   */
   registerUser(): void {
     this.fetchApiData.userRegistration(this.userDetails).subscribe((response) => {
-      // Logic for a successful user registration goes here! (To be implemented)
       this.dialogRef.close(); // This will close the modal on success!
       console.log(response);
       this.snackBar.open('user registered successfully!', 'OK', {

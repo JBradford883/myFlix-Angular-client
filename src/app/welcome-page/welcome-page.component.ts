@@ -1,8 +1,11 @@
+// Core modules
 import { Component, OnInit } from '@angular/core';
 
+// Custom components
 import { UserLoginFormComponent } from '../user-login-form/user-login-form.component';
 import { UserRegistrationFormComponent } from '../user-registration-form/user-registration-form.component';
 
+// Material modules
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -15,16 +18,20 @@ export class WelcomePageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Opens the registration form modal
+   */
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
-      // Assigning the dialog a width
       width: '280px'
     });
   }
 
+  /**
+   * Opens the user login form modal
+   */
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
-      // Assigning the dialog a width
       width: '280px'
     });
   }

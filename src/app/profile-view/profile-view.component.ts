@@ -1,12 +1,14 @@
+// Core modules
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+// Custom components
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { EditProfileViewComponent } from '../edit-profile-view/edit-profile-view.component';
 
+// Material modules
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { MatCard } from '@angular/material/card';
 
 @Component({
   selector: 'app-profile-view',
@@ -24,10 +26,16 @@ export class ProfileViewComponent implements OnInit {
     public router: Router
   ) { }
 
+  /**
+   * Gets the user when the component is opened
+   */
   ngOnInit(): void {
     this.getUserProfile();
   }
 
+  /**
+   * Gets the user profile information from the backend
+   */
   getUserProfile(): void {
     let user = localStorage.getItem('username');
     this.fetchApiData.getUserProfile(user).subscribe((res: any) => {
@@ -35,12 +43,20 @@ export class ProfileViewComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens a modal to edit the users profile information
+   */
   openEditUserProfile(): void {
     this.dialog.open(EditProfileViewComponent, {
       width: '500px'
     })
   }
 
+  /**
+   * Allows the user to delete their profile
+   * @returns confirm message to confirm user wants to remove their profile
+   * @returns status message success/error
+   */
   deleteProfile(): void {
     if (confirm('Are you sure? This cannot be undone.')) {
       this.fetchApiData.deleteUserProfile().subscribe(() => {

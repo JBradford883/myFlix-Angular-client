@@ -1,4 +1,7 @@
+// Core modules
 import { Component, Inject, OnInit } from '@angular/core';
+
+// Material modules
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
@@ -10,6 +13,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class SynopsisViewComponent implements OnInit {
 
   constructor(
+
+    /**
+     * uses inject to get the movie details form the movie object
+     */
     @Inject(MAT_DIALOG_DATA)
     public data: {
       Title: string,

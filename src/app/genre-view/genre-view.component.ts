@@ -1,4 +1,7 @@
+// core modules
 import { Component, Inject, OnInit } from '@angular/core';
+
+// material modules
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -9,6 +12,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class GenreViewComponent implements OnInit {
 
   constructor(
+
+    /**
+     * Uses inject to get the movie details from the movie object
+     */
     @Inject(MAT_DIALOG_DATA)
     public data: {
       Name: string;

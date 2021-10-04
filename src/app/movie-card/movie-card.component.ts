@@ -1,13 +1,18 @@
+// Core modules
 import { Component, OnInit } from '@angular/core';
+
+// Material Modules
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+// Custom components
 import { GenreViewComponent } from '../genre-view/genre-view.component';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { DirectorViewComponent } from '../director-view/director-view.component';
 import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component';
 import { Router } from '@angular/router';
 
+// Declare global variables
 const user = localStorage.getItem('username');
 
 @Component({
@@ -28,11 +33,18 @@ export class MovieCardComponent implements OnInit {
     public router: Router,
   ) { }
 
+
+  /**
+   * Gets movies and favoriteMovies when initialized
+   */
   ngOnInit(): void {
     this.getMovies();
     this.getUsersFavs();
   }
 
+  /**
+   * Gets all movies
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -41,6 +53,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+  * opens the genre modal with information about the specific genre
+  * @param name (genre name)
+  * @param description (genre description)
+  */
   openGenre(name: string, description: string,): void {
     this.dialog.open(GenreViewComponent, {
       data: {
@@ -51,6 +68,13 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * opens the director modal with informaiton about the specific director
+   * @param name (director name)
+   * @param bio (director bio)
+   * @param birth (director birth year)
+   * @param death (director death year)
+   */
   openDirector(name: string, bio: string, birth: string, death: string): void {
     this.dialog.open(DirectorViewComponent, {
       data: {
@@ -63,6 +87,12 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * open the synopsis modal with information about the specific movie
+   * @param title (movie title)
+   * @param imagePath (movie poster)
+   * @param description (movie description)
+   */
   openSynopsis(title: string, imagePath: any, description: string): void {
     this.dialog.open(SynopsisViewComponent, {
       data: {
@@ -75,8 +105,11 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-   * Adds move to users favorites list
-  */
+   * adds the movie to the users favorite movies array
+   * @param id (movie._id - unique identifier)
+   * @param Title (movie title)
+   * @returns a status message -succes/error
+   */
   postFavoriteMovies(id: string, Title: string): void {
     this.fetchApiData.postFavoriteMovies(id).subscribe((res: any) => {
       this.snackBar.open(`${Title} has been added to favorties`, 'OK', {
@@ -87,8 +120,11 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-   * Removes movie from users favorites list
-  */
+   * removes a movie from the users favorite movies array
+   * @param id (movie._id - unique identifier)
+   * @param Title (movie title)
+   * @returns a status message - success/error
+   */
   deleteFavoriteMovies(id: string, Title: string): void {
     this.fetchApiData.deleteFavoriteMovies(id).subscribe((res: any) => {
       this.snackBar.open(`${Title} has been removed from favorties`, 'OK', {
@@ -108,9 +144,13 @@ export class MovieCardComponent implements OnInit {
       return this.favs;
     });
   }
+
   /**
-   * Compares movie id's with getUsersFavs returned list to set the Favorites icon to add/remove correctly
-  */
+   * Compares the movie id's with getUserFavs to display the favorite movie icon correctly
+   * red heart - movie is in favorties list / white heart with outline - movie is not in favorites list
+   * @param id 
+   * @returns 
+   */
   setFavStatus(id: any): any {
     if (this.favs.includes(id)) {
       return true;

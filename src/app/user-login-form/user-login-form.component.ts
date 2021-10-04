@@ -1,11 +1,11 @@
-// Core Angular Modules
+// Core modules
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-// Custom Component
+// Custom components
 import { FetchApiDataService } from '../fetch-api-data.service';
 
-// Material Components
+// Material components
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -17,6 +17,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class UserLoginFormComponent implements OnInit {
 
+  /**
+   * Required fields for the login form
+   */
   @Input() userDetails = { Username: '', Password: '' };
 
   constructor(
@@ -28,7 +31,12 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   * Send a request to login the user, if successful,
+   * saves the username to the local storage
+   * save a token to local storage
+   * redirects the user to the movies endpoint
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.userDetails).subscribe((response) => {
 

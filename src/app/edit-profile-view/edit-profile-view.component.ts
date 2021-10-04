@@ -1,7 +1,7 @@
 // Core modules
 import { Component, OnInit, Input } from '@angular/core';
 
-// components
+// Components
 import { FetchApiDataService } from '../fetch-api-data.service';
 
 // Material modules

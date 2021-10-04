@@ -113,7 +113,7 @@ export class FetchApiDataService {
   }
 
   /**
-   * 
+   * Gets the user profile information 
    * @param username 
    * @returns Object - data about the user
    */
